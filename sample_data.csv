@@ -1,0 +1,11 @@
+Patient_ID,Age,Gender,Weight_kg,Height_cm,Blood_Pressure,Heart_Rate,Cholesterol,Diabetes
+P001,25,Male,68,172,120/80,72,180,No
+P002,42,Female,82,160,140/90,88,240,Yes
+P003,35,Male,75,178,130/85,76,210,No
+P004,51,Female,90,158,150/95,92,260,Yes
+P005,29,Male,70,175,118/78,70,175,No
+P006,47,Female,85,162,145/92,90,250,Yes
+P007,33,Male,78,180,128/82,74,200,No
+P008,60,Female,95,155,160/100,98,280,Yes
+P009,40,Male,80,170,135/88,82,220,No
+P010,55,Female,88,165,148/94,94,270,Yes

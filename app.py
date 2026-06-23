@@ -1,9 +1,7 @@
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet
-import tempfile
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+
 # ==================================
 # PAGE CONFIG
 # ==================================
@@ -12,62 +10,7 @@ st.set_page_config(
     page_icon="📊",
     layout="wide"
 )
-def generate_pdf_report(rows, columns, health_score, risk_score, findings):
 
-    temp_pdf = tempfile.NamedTemporaryFile(
-        delete=False,
-        suffix=".pdf"
-    )
-
-    doc = SimpleDocTemplate(temp_pdf.name)
-
-    styles = getSampleStyleSheet()
-
-    content = []
-
-    content.append(
-        Paragraph("DataInsight Pro Report", styles["Title"])
-    )
-
-    content.append(Spacer(1, 12))
-
-    content.append(
-        Paragraph(f"Rows: {rows}", styles["Normal"])
-    )
-
-    content.append(
-        Paragraph(f"Columns: {columns}", styles["Normal"])
-    )
-
-    content.append(
-        Paragraph(
-            f"Data Health Score: {health_score}%",
-            styles["Normal"]
-        )
-    )
-
-    content.append(
-        Paragraph(
-            f"Risk Score: {risk_score}/100",
-            styles["Normal"]
-        )
-    )
-
-    content.append(Spacer(1, 12))
-
-    content.append(
-        Paragraph("AI Findings", styles["Heading2"])
-    )
-
-    for item in findings:
-
-        content.append(
-            Paragraph(item, styles["Normal"])
-        )
-
-    doc.build(content)
-
-    return temp_pdf.name
 # ==================================
 # HEADER
 # ==================================
@@ -284,26 +227,6 @@ if uploaded_file is not None:
             st.error("🔴 High Risk Dataset")
 
         st.divider()
-        st.divider()
-
-st.subheader("📄 Export Report")
-
-pdf_file = generate_pdf_report(
-    rows,
-    columns,
-    health_score,
-    risk_score,
-    findings
-)
-
-with open(pdf_file, "rb") as pdf:
-
-    st.download_button(
-        label="📥 Download PDF Report",
-        data=pdf,
-        file_name="DataInsightPro_Report.pdf",
-        mime="application/pdf"
-    )
 
         st.subheader("📋 Dataset Preview")
 
